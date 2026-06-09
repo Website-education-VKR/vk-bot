@@ -1,0 +1,6 @@
+services:
+  - type: worker          # worker, не web — у бота нет HTTP сервера
+    name: vk-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
