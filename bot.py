@@ -2,8 +2,20 @@ import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import random
-
 import os
+import threading
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running"
+
+def run_web():
+    app.run(host='0.0.0.0', port=8080)
+
+threading.Thread(target=run_web).start()
+
 TOKEN = os.environ.get("VK_TOKEN")
 GROUP_ID = int(os.environ.get("VK_GROUP_ID", "236632318"))
 
